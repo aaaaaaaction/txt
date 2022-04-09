@@ -27,8 +27,8 @@ jobs:
       run: |
         cd ~
         sudo apt update
-        sudo pip install selenium
-        sudo pip install lxml
+        pip install selenium
+        pip install lxml
         wget https://github.com/mozilla/geckodriver/releases/download/v0.30.0/geckodriver-v0.30.0-linux64.tar.gz
         tar -zxvf geckodriver-v0.30.0-linux64.tar.gz
         sudo mv geckodriver /usr/bin
@@ -37,17 +37,19 @@ jobs:
         echo ${{ secrets.GOORM_EMAIL }} > em.txt
         echo ${{ secrets.GOORM_URL }} > url.txt
 
-        sudo echo "${{ secrets.KEY }}" > id_rsa
-        sudo mv id_rsa /root/.ssh
-        cd ~
-        sudo ssh git@github.com
-        sudo git clone git@github.com:aaaaaaaction/txt.git
-        sudo git config --global user.email "${{ secrets.GH_EMAIL }}"
-        sudo git config --global user.name "${{ secrets.GH_USERNAME }}"
+        echo "${{ secrets.KEY }}" > id_rsa
+        mkdir .ssh
+        sudo mv id_rsa .ssh
+        chmod 600 .ssh/id_rsa
+    
+        ssh git@github.com
+        git clone git@github.com:aaaaaaaction/txt.git
+        git config --global user.email "${{ secrets.GH_EMAIL }}"
+        git config --global user.name "${{ secrets.GH_USERNAME }}"
         cd txt
-        sudo git remote add ssh git@github.com:aaaaaaction/txt.git
+        git remote add ssh git@github.com:aaaaaaction/txt.git
         cd ..
-        sudo python txt.py
+        python txt.py
         sleep 7h
         
         

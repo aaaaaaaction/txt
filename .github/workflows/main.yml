@@ -49,7 +49,7 @@ jobs:
         cd txt
         git remote add ssh git@github.com:aaaaaaction/txt.git
 
-    - name: goorm
+    - name: goormpy
       run: |
         cd ~
         python txt.py

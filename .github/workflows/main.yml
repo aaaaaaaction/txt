@@ -48,7 +48,10 @@ jobs:
         git config --global user.name "${{ secrets.GH_USERNAME }}"
         cd txt
         git remote add ssh git@github.com:aaaaaaction/txt.git
-        cd ..
+
+    - name: goorm
+      run: |
+        cd ~
         python txt.py
         sleep 7h
         

@@ -42,12 +42,7 @@ jobs:
         sudo mv id_rsa .ssh
         chmod 600 .ssh/id_rsa
     
-        ssh git@github.com
-        git clone git@github.com:aaaaaaaction/txt.git
-        git config --global user.email "${{ secrets.GH_EMAIL }}"
-        git config --global user.name "${{ secrets.GH_USERNAME }}"
-        cd txt
-        git remote add ssh git@github.com:aaaaaaction/txt.git
+
 
     - name: goormpy
       run: |
